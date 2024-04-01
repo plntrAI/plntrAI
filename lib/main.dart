@@ -41,7 +41,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  String? apiKey;
+  String? apiKey = 'AIzaSyD5IkhK2M_63AKWbSEVt9jZNRgeZKhVdSI'; // replace 'your-api-key-here' with your actual API key
 
   @override
   Widget build(BuildContext context) {
