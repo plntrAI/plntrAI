@@ -41,7 +41,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  String? apiKey = 'AIzaSyD5IkhK2M_63AKWbSEVt9jZNRgeZKhVdSI'; // replace 'your-api-key-here' with your actual API key
+  String? apiKey =
+      'AIzaSyD5IkhK2M_63AKWbSEVt9jZNRgeZKhVdSI'; // replace 'your-api-key-here' with your actual API key
 
   int _selectedIndex = 0;
 
@@ -56,7 +57,8 @@ class _ChatScreenState extends State<ChatScreen> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             const DrawerHeader(
-              child: Text('Development build: changes are not final and subject to change'),
+              child: Text(
+                  'Development build: changes are not final and subject to change'),
             ),
             ListTile(
               title: const Text('Dashboard'),
@@ -86,8 +88,8 @@ class _ChatScreenState extends State<ChatScreen> {
       body: switch (apiKey) {
         final providedKey? => ChatWidget(apiKey: providedKey),
         _ => ApiKeyWidget(onSubmitted: (key) {
-          setState(() => apiKey = key);
-        }),
+            setState(() => apiKey = key);
+          }),
       },
     );
   }
@@ -109,8 +111,8 @@ class ApiKeyWidget extends StatelessWidget {
           children: [
             const Text(
               'To use the Gemini API, you\'ll need an API key. '
-                  'If you don\'t already have one, '
-                  'create a key in Google AI Studio.',
+              'If you don\'t already have one, '
+              'create a key in Google AI Studio.',
             ),
             const SizedBox(height: 8),
             Link(
@@ -127,7 +129,7 @@ class ApiKeyWidget extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     decoration:
-                    textFieldDecoration(context, 'Enter your API key'),
+                        textFieldDecoration(context, 'Enter your API key'),
                     controller: _textController,
                     onSubmitted: (value) {
                       onSubmitted(value);
@@ -179,7 +181,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   void _scrollDown() {
     WidgetsBinding.instance.addPostFrameCallback(
-          (_) => _scrollController.animateTo(
+      (_) => _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(
           milliseconds: 750,
@@ -227,7 +229,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                     autofocus: true,
                     focusNode: _textFieldFocus,
                     decoration:
-                    textFieldDecoration(context, 'Enter a prompt...'),
+                        textFieldDecoration(context, 'Enter a prompt...'),
                     controller: _textController,
                     onSubmitted: (String value) {
                       _sendChatMessage(value);
@@ -326,7 +328,7 @@ class MessageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment:
-      isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Flexible(
           child: Container(
