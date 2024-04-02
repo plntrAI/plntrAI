@@ -70,8 +70,8 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
             ListTile(
-              title: Text('Converse'),
-              leading: Icon(Icons.auto_awesome),
+              title: const Text('Converse'),
+              leading: const Icon(Icons.auto_awesome),
               selected: _selectedIndex == 1,
               onTap: () {
                 setState(() {
