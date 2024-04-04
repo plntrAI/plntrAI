@@ -226,7 +226,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                     autofocus: true,
                     focusNode: _textFieldFocus,
                     decoration:
-                        textFieldDecoration(context, 'Enter a prompt...'),
+                        textFieldDecoration(context, 'Ask me anything...'),
                     controller: _textController,
                     onSubmitted: (String value) {
                       _sendChatMessage(value);
