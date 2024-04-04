@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AuthorsScreen extends StatelessWidget {
+class DashboardScreen extends StatelessWidget {
   final String title;
 
-  const AuthorsScreen({super.key, required this.title});
+  const DashboardScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) => Scaffold(
