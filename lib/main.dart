@@ -7,11 +7,11 @@ import 'package:plntrai/screens/home.dart';
 import 'theme.dart';
 
 void main() {
-  runApp(const GenerativeAISample());
+  runApp(const App());
 }
 
-class GenerativeAISample extends StatelessWidget {
-  const GenerativeAISample({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
   final MaterialTheme materialTheme = const MaterialTheme(TextTheme());
 
   @override
