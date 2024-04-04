@@ -17,8 +17,8 @@ class ApiKeyWidget extends StatelessWidget {
           children: [
             const Text(
               'To use the Gemini API, you\'ll need an API key. '
-                  'If you don\'t already have one, '
-                  'create a key in Google AI Studio.',
+              'If you don\'t already have one, '
+              'create a key in Google AI Studio.',
             ),
             const SizedBox(height: 8),
             Link(
@@ -35,7 +35,7 @@ class ApiKeyWidget extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     decoration:
-                    textFieldDecoration(context, 'Enter your API key'),
+                        textFieldDecoration(context, 'Enter your API key'),
                     controller: _textController,
                     onSubmitted: (value) {
                       onSubmitted(value);
