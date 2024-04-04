@@ -3,8 +3,8 @@
 // that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:plntrai/screens/home.dart';
 import 'theme.dart';
-import 'screens/chat.dart';
 
 void main() {
   runApp(const GenerativeAISample());
@@ -21,7 +21,7 @@ class GenerativeAISample extends StatelessWidget {
       title: 'plntrAI',
       theme: materialTheme.light(),
       darkTheme: materialTheme.dark(),
-      home: const ChatScreen(title: 'plntrAI'),
+      home: const HomeScreen(),
     );
   }
 }
