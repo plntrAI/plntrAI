@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:plntrai/screens/home.dart';
+
 import 'theme.dart';
 
 void main() {
@@ -12,6 +13,7 @@ void main() {
 
 class App extends StatelessWidget {
   const App({super.key});
+
   final MaterialTheme materialTheme = const MaterialTheme(TextTheme());
 
   @override

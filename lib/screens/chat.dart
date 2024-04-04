@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/chat.dart';
 import '../widgets/api_key.dart';
+import '../widgets/chat.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.title});
@@ -22,8 +22,8 @@ class _ChatScreenState extends State<ChatScreen> {
       body: switch (apiKey) {
         final providedKey? => ChatWidget(apiKey: providedKey),
         _ => ApiKeyWidget(onSubmitted: (key) {
-          setState(() => apiKey = key);
-        }),
+            setState(() => apiKey = key);
+          }),
       },
     );
   }
