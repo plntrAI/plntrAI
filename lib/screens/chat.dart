@@ -19,9 +19,6 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: switch (apiKey) {
         final providedKey? => ChatWidget(apiKey: providedKey),
         _ => ApiKeyWidget(onSubmitted: (key) {

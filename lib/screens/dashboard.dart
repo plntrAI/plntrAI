@@ -6,11 +6,8 @@ class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key, required this.title});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Text(title),
-    ),
-    body: const Center(
+  Widget build(BuildContext context) => const Scaffold(
+    body: Center(
       child: Text('Dashboard'),
     ),
   );
