@@ -24,11 +24,23 @@ class MessageWidget extends StatelessWidget {
               color: isFromUser
                   ? Theme.of(context).colorScheme.primaryContainer
                   : Theme.of(context).colorScheme.surfaceVariant,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: isFromUser
+                  ? const BorderRadius.only(
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
+                bottomLeft: Radius.circular(18),
+                bottomRight: Radius.circular(3),
+              )
+                  : const BorderRadius.only(
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
+                bottomLeft: Radius.circular(3),
+                bottomRight: Radius.circular(18),
+              ),
             ),
             padding: const EdgeInsets.symmetric(
-              vertical: 15,
-              horizontal: 20,
+              vertical: 10,
+              horizontal: 15,
             ),
             margin: const EdgeInsets.only(bottom: 8),
             child: MarkdownBody(data: text),
