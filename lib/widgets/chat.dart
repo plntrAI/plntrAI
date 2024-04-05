@@ -167,11 +167,11 @@ class _ChatWidgetState extends State<ChatWidget> {
 
 InputDecoration textFieldDecoration(BuildContext context, String hintText) =>
     InputDecoration(
-      contentPadding: const EdgeInsets.all(15),
+      contentPadding: const EdgeInsets.all(20),
       hintText: hintText,
       border: OutlineInputBorder(
         borderRadius: const BorderRadius.all(
-          Radius.circular(14),
+          Radius.circular(28),
         ),
         borderSide: BorderSide(
           color: Theme.of(context).colorScheme.secondary,
@@ -179,7 +179,7 @@ InputDecoration textFieldDecoration(BuildContext context, String hintText) =>
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(
-          Radius.circular(14),
+          Radius.circular(28),
         ),
         borderSide: BorderSide(
           color: Theme.of(context).colorScheme.secondary,
