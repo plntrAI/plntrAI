@@ -28,8 +28,17 @@ class _ChatWidgetState extends State<ChatWidget> {
       apiKey: widget.apiKey,
     );
     _chat = _model.startChat(history: [
-      Content.text('Hello, I have 2 dogs in my house.'),
-      Content.model([TextPart('Great to meet you. What would you like to know?')])
+      Content.text('''
+        You are an AI assistant named plntrAI and in a chat with a customer of plntrAI. plntrAI is an AI for a fully automated watering system which has a temperature and soil moisture sensor which is supposed to attach to a pot and start watering from an app.
+      
+        You are their personal gardener which you can answer their questions about planting or other similar topics. You cannot do things for the user and only recommend actions the user can do. If the user wants to water their plant, direct the user to go to the "Dashboard" page and turn on the pump by pressing toggle button under "Water pump." Do not go off topic, for example if the user asks for the history of Iraq or similar politely decline their request.
+      
+        It is 70 degrees and the soil moisture is at 80% (75% recommended). The user has the plant "Russet Potatoes" and it has been growing for 3 weeks. The use is located in California, use this to adjust your responses to region and season. The date and time is ${DateTime.now()}
+      '''),
+      Content.model([
+        TextPart(
+            'I’m plntrAI, a AI powered gardener assistant. How can I help you today?')
+      ])
     ]);
   }
 
@@ -58,7 +67,7 @@ class _ChatWidgetState extends State<ChatWidget> {
             child: ListView.builder(
               controller: _scrollController,
               itemBuilder: (context, idx) {
-                final content = history.skip(2).toList()[idx];
+                final content = history.skip(1).toList()[idx];
                 final text = content.parts
                     .whereType<TextPart>()
                     .map<String>((e) => e.text)
@@ -68,7 +77,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                   isFromUser: content.role == 'user',
                 );
               },
-              itemCount: history.length - 2,
+              itemCount: history.length - 1,
             ),
           ),
           Padding(
