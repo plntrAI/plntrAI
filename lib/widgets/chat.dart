@@ -23,9 +23,21 @@ class _ChatWidgetState extends State<ChatWidget> {
   @override
   void initState() {
     super.initState();
+    final safetySettings = [
+      SafetySetting(HarmCategory.harassment, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.high),
+    ];
+    final generationConfig = GenerationConfig(
+      maxOutputTokens: 8192,
+    );
+
     _model = GenerativeModel(
       model: 'gemini-pro',
       apiKey: widget.apiKey,
+      safetySettings: safetySettings,
+      generationConfig: generationConfig,
     );
     _chat = _model.startChat(history: [
       Content.text('''
