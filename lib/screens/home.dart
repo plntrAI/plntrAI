@@ -25,10 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: <Widget>[
-            const DrawerHeader(
-              child: Text('plntrAI'),
-            ),
+          padding: EdgeInsets.zero,
+          children: [
             ListTile(
               title: const Text('Chat'),
               onTap: () {
