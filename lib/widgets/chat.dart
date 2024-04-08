@@ -30,7 +30,7 @@ class _ChatWidgetState extends State<ChatWidget> {
       SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.high),
     ];
     final generationConfig = GenerationConfig(
-      maxOutputTokens: 1024,
+      maxOutputTokens: 8192,
     );
 
     _model = GenerativeModel(
