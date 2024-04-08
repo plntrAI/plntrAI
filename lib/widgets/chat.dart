@@ -27,7 +27,10 @@ class _ChatWidgetState extends State<ChatWidget> {
       model: 'gemini-pro',
       apiKey: widget.apiKey,
     );
-    _chat = _model.startChat();
+    _chat = _model.startChat(history: [
+      Content.text('Hello, I have 2 dogs in my house.'),
+      Content.model([TextPart('Great to meet you. What would you like to know?')])
+    ]);
   }
 
   void _scrollDown() {
@@ -55,7 +58,7 @@ class _ChatWidgetState extends State<ChatWidget> {
             child: ListView.builder(
               controller: _scrollController,
               itemBuilder: (context, idx) {
-                final content = history[idx];
+                final content = history.skip(2).toList()[idx];
                 final text = content.parts
                     .whereType<TextPart>()
                     .map<String>((e) => e.text)
@@ -65,7 +68,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                   isFromUser: content.role == 'user',
                 );
               },
-              itemCount: history.length,
+              itemCount: history.length - 2,
             ),
           ),
           Padding(
