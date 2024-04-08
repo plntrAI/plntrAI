@@ -15,12 +15,6 @@ class ChatWidget extends StatefulWidget {
 class _ChatWidgetState extends State<ChatWidget> {
   late final GenerativeModel _model;
   late final ChatSession _chat;
-  final safetySettings = [
-    SafetySetting(HarmCategory.harassment, HarmBlockThreshold.high),
-    SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.high),
-    SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.high),
-    SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.high),
-  ];
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _textController = TextEditingController();
   final FocusNode _textFieldFocus = FocusNode(debugLabel: 'TextField');
@@ -29,10 +23,21 @@ class _ChatWidgetState extends State<ChatWidget> {
   @override
   void initState() {
     super.initState();
+    final safetySettings = [
+      SafetySetting(HarmCategory.harassment, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.high),
+      SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.high),
+    ];
+    final generationConfig = GenerationConfig(
+      maxOutputTokens: 1024,
+    );
+
     _model = GenerativeModel(
       model: 'gemini-pro',
       apiKey: widget.apiKey,
       safetySettings: safetySettings,
+      generationConfig: generationConfig,
     );
     _chat = _model.startChat();
   }
