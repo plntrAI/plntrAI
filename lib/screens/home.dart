@@ -27,7 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            const DrawerHeader(
+              child: Text('plntrAI'),
+            ),
             ListTile(
+              leading: const Icon(Icons.chat_outlined),
               title: const Text('Chat'),
               onTap: () {
                 setState(() {
@@ -37,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.dashboard_outlined),
               title: const Text('Dashboard'),
               onTap: () {
                 setState(() {
