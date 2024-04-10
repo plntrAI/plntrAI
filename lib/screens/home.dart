@@ -19,6 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('plntrAI'),
@@ -50,7 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: _pageOptions[_selectedIndex],
+      body: Padding(
+        padding: EdgeInsets.only(bottom: bottomPadding),
+        child: _pageOptions[_selectedIndex],
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@
 // that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:plntrai/screens/home.dart';
 
 import 'theme.dart';
@@ -18,6 +19,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = Theme.of(context).colorScheme.background;
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
+    ));
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'plntrAI',
