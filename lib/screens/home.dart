@@ -22,14 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('plntrAI'),
+        centerTitle: true,
       ),
       drawer: Drawer(
         child: ListView(
-          padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              child: Text('plntrAI'),
-            ),
             ListTile(
               leading: const Icon(Icons.chat_outlined),
               title: const Text('Chat'),
