@@ -127,7 +127,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                   ),
                 )
               else
-                const CircularProgressIndicator(),
+                const Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: CircularProgressIndicator(),
+                )
             ],
           ),
         ],
