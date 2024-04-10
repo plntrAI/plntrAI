@@ -92,40 +92,43 @@ class _ChatWidgetState extends State<ChatWidget> {
               itemCount: history.length - 1,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 25,
-              horizontal: 15,
-            ),
-            child: Row(
-              children: [
-                Expanded(
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16),
                   child: TextField(
                     autofocus: true,
                     focusNode: _textFieldFocus,
-                    decoration:
-                        textFieldDecoration(context, 'Ask me anything...'),
+                    decoration: textFieldDecoration(context, 'Ask me anything...'),
                     controller: _textController,
                     onSubmitted: (String value) {
                       _sendChatMessage(value);
                     },
                   ),
                 ),
-                const SizedBox.square(dimension: 15),
-                if (!_loading)
-                  IconButton(
-                    onPressed: () async {
-                      _sendChatMessage(_textController.text);
-                    },
-                    icon: Icon(
-                      Icons.send,
-                      color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox.square(dimension: 16),
+              if (!_loading)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: IconButton(
+                      onPressed: () async {
+                        _sendChatMessage(_textController.text);
+                      },
+                      icon: Icon(
+                        Icons.send,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 32, // Make sure this matches your square size
+                      ),
                     ),
-                  )
-                else
-                  const CircularProgressIndicator(),
-              ],
-            ),
+                  ),
+                )
+              else
+                const CircularProgressIndicator(),
+            ],
           ),
         ],
       ),
@@ -195,12 +198,12 @@ InputDecoration textFieldDecoration(BuildContext context, String hintText) =>
       hintText: hintText,
       border: const OutlineInputBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(28),
+          Radius.circular(40),
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(
-          Radius.circular(28),
+          Radius.circular(40),
         ),
         borderSide: BorderSide(
           color: Theme.of(context).colorScheme.secondary,
