@@ -25,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('plntrAI'),
         centerTitle: true,
+        // scrolledUnderElevation: 0,
+        // shadowColor: Theme.of(context).colorScheme.shadow,
+        primary: true,
       ),
       drawer: Drawer(
         child: ListView(
