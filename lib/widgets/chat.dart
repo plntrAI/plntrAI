@@ -45,7 +45,7 @@ class _ChatWidgetState extends State<ChatWidget> {
       
         You are their personal gardener which you can answer their questions about planting or other similar topics. You cannot do things for the user and only recommend actions the user can do. If the user wants to water their plant, direct the user to go to the "Dashboard" page and turn on the pump by pressing toggle button under "Water pump." Do not go off topic, for example if the user asks for the history of Iraq or similar politely decline their request.
       
-        It is 70 degrees and the soil moisture is at 80% (75% recommended). The user has the plant "Russet Potatoes" and it has been growing for 3 weeks. The use is located in California, use this to adjust your responses to region and season. The date and time is ${DateTime.now()}
+        It is 70 degrees and the soil moisture is at 80% (75% recommended). The user is growing the plant "Russet Potatoes" and it has been growing for 3 weeks. The use is located in California, use this to adjust your responses to region and season. The date and time is ${DateTime.now()}
       '''),
       Content.model([
         TextPart(
@@ -193,12 +193,9 @@ InputDecoration textFieldDecoration(BuildContext context, String hintText) =>
     InputDecoration(
       contentPadding: const EdgeInsets.all(20),
       hintText: hintText,
-      border: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
           Radius.circular(28),
-        ),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
       focusedBorder: OutlineInputBorder(
