@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../services/arduino_service.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final ArduinoService arduinoService = ArduinoService();
   Future<Map<String, dynamic>>? moistureData;
   bool isPumpOn = false;
+  double pumpTime = 0.0; // New state variable for pump time
 
   @override
   void initState() {
@@ -36,7 +38,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
-                  return Text('Moisture: ${snapshot.data!['value']}');
+                  return Card(
+                    // New Card widget for moisture percentage
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          const Text('Moisture'),
+                          Text('${snapshot.data!['value']}%'),
+                        ],
+                      ),
+                    ),
+                  );
                 }
               },
             ),
@@ -49,6 +62,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   if (isPumpOn) {
                     arduinoService.turnOnPump();
                   }
+                });
+              },
+            ),
+            Slider(
+              value: pumpTime,
+              min: 0,
+              max: 60,
+              divisions: 12,
+              label: '$pumpTime seconds',
+              onChanged: (double value) {
+                setState(() {
+                  pumpTime = value;
                 });
               },
             ),
