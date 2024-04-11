@@ -20,6 +20,8 @@ class SettingsDialog extends StatefulWidget {
 class _SettingsDialogState extends State<SettingsDialog> {
   String _color = 'default';
   String _theme = 'system';
+  final List<String> _colors = ['default', 'system'];
+  final List<String> _themes = ['dark', 'light', 'system'];
 
   @override
   Widget build(BuildContext context) {
@@ -28,34 +30,44 @@ class _SettingsDialogState extends State<SettingsDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          DropdownButton<String>(
-            value: _color,
-            items: ['default', 'system'].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (newValue) {
-              setState(() {
-                _color = newValue!;
-              });
-            },
+          const Text(
+            'Color',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          DropdownButton<String>(
-            value: _theme,
-            items: ['dark', 'light', 'system'].map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            onChanged: (newValue) {
-              setState(() {
-                _theme = newValue!;
-              });
-            },
+          ..._colors.map((String color) {
+            return RadioListTile<String>(
+              title: Text(color),
+              value: color,
+              groupValue: _color,
+              onChanged: (String? value) {
+                setState(() {
+                  _color = value!;
+                });
+              },
+            );
+          }),
+          const Text(
+            'Theme',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          ..._themes.map((String theme) {
+            return RadioListTile<String>(
+              title: Text(theme),
+              value: theme,
+              groupValue: _theme,
+              onChanged: (String? value) {
+                setState(() {
+                  _theme = value!;
+                });
+              },
+            );
+          }),
         ],
       ),
       actions: [
