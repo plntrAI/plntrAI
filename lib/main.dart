@@ -1,37 +1,52 @@
-// Copyright 2024 the Dart project authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license
-// that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:plntrai/screens/home.dart';
+
+import 'screens/home.dart';
 
 import 'theme.dart';
 
 void main() {
   runApp(const App());
 }
-
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
-  final MaterialTheme materialTheme = const MaterialTheme(TextTheme());
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  ThemeMode themeMode = ThemeMode.system;
+
+  bool get useLightMode => switch (themeMode) {
+    ThemeMode.system =>
+    View.of(context).platformDispatcher.platformBrightness ==
+        Brightness.light,
+    ThemeMode.light => true,
+    ThemeMode.dark => false
+  };
+
+  void handleBrightnessChange(bool useLightMode) {
+    setState(() {
+      themeMode = useLightMode ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent,
-      statusBarColor: Colors.transparent,
-    ));
-
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'plntrAI',
-      theme: materialTheme.light(),
-      darkTheme: materialTheme.dark(),
-      home: const HomeScreen(),
+      themeMode: themeMode,
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      home: HomeScreen(
+        useLightMode: useLightMode,
+        handleBrightnessChange: handleBrightnessChange,
+      ),
     );
   }
 }

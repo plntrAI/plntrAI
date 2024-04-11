@@ -4,14 +4,24 @@ import '../screens/chat.dart';
 import '../screens/dashboard.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    required this.useLightMode,
+    required this.handleBrightnessChange,
+  });
+
+  final bool useLightMode;
+
+  final void Function(bool useLightMode) handleBrightnessChange;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class SettingsDialog extends StatefulWidget {
-  const SettingsDialog({super.key});
+  final void Function(bool useLightMode) handleBrightnessChange;
+
+  const SettingsDialog({super.key, required this.handleBrightnessChange});
 
   @override
   State<SettingsDialog> createState() => _SettingsDialogState();
@@ -70,6 +80,18 @@ class _SettingsDialogState extends State<SettingsDialog> {
                   setState(() {
                     _theme = value!;
                   });
+                  ThemeMode mode;
+                  switch (_theme) {
+                    case 'Light':
+                      mode = ThemeMode.light;
+                      break;
+                    case 'Dark':
+                      mode = ThemeMode.dark;
+                      break;
+                    default:
+                      mode = ThemeMode.system;
+                  }
+                  widget.handleBrightnessChange(mode == ThemeMode.light);
                 },
               ),
             );
@@ -116,7 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (BuildContext context) => const SettingsDialog(),
+                builder: (BuildContext context) => SettingsDialog(
+                  handleBrightnessChange: widget.handleBrightnessChange,
+                ),
               );
             },
           )
