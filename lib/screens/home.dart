@@ -30,37 +30,48 @@ class _SettingsDialogState extends State<SettingsDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Divider(),
-          Text(
-            'Theme',
-            style: Theme.of(context).textTheme.labelLarge,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Theme',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           ),
           ..._colors.map((String color) {
-            return RadioListTile<String>(
-              title: Text(color),
-              value: color,
-              groupValue: _color,
-              onChanged: (String? value) {
-                setState(() {
-                  _color = value!;
-                });
-              },
+            return Align(
+              alignment: Alignment.centerLeft,
+              child: RadioListTile<String>(
+                title: Text(color),
+                value: color,
+                groupValue: _color,
+                onChanged: (String? value) {
+                  setState(() {
+                    _color = value!;
+                  });
+                },
+              ),
             );
           }),
-          Text(
-            'Dark mode preference',
-            style: Theme.of(context).textTheme.labelLarge,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Dark mode preference',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           ),
           ..._themes.map((String theme) {
-            return RadioListTile<String>(
-              title: Text(theme),
-              value: theme,
-              groupValue: _theme,
-              onChanged: (String? value) {
-                setState(() {
-                  _theme = value!;
-                });
-              },
+            return Align(
+              alignment: Alignment.centerLeft,
+              child: RadioListTile<String>(
+                title: Text(theme),
+                value: theme,
+                groupValue: _theme,
+                onChanged: (String? value) {
+                  setState(() {
+                    _theme = value!;
+                  });
+                },
+              ),
             );
           }),
         ],
