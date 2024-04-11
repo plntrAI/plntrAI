@@ -18,10 +18,10 @@ class SettingsDialog extends StatefulWidget {
 }
 
 class _SettingsDialogState extends State<SettingsDialog> {
-  String _color = 'default';
-  String _theme = 'system';
-  final List<String> _colors = ['default', 'system'];
-  final List<String> _themes = ['dark', 'light', 'system'];
+  String _color = 'System';
+  String _theme = 'System';
+  final List<String> _colors = ['System', 'Default'];
+  final List<String> _themes = ['System', 'Light', 'Dark'];
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,10 @@ class _SettingsDialogState extends State<SettingsDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'Color',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          const Divider(),
+          Text(
+            'Theme',
+            style: Theme.of(context).textTheme.labelLarge,
           ),
           ..._colors.map((String color) {
             return RadioListTile<String>(
@@ -49,12 +47,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
               },
             );
           }),
-          const Text(
-            'Theme',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          Text(
+            'Dark mode preference',
+            style: Theme.of(context).textTheme.labelLarge,
           ),
           ..._themes.map((String theme) {
             return RadioListTile<String>(
