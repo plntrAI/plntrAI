@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(
-              Icons.settings_outlined,
+              Icons.settings,
             ),
             onPressed: () {
               showDialog(
