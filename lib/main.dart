@@ -18,18 +18,25 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   ThemeMode themeMode = ThemeMode.system;
+  bool useDynamicTheme = true;
 
   bool get useLightMode => switch (themeMode) {
-        ThemeMode.system =>
-          View.of(context).platformDispatcher.platformBrightness ==
-              Brightness.light,
-        ThemeMode.light => true,
-        ThemeMode.dark => false
-      };
+    ThemeMode.system =>
+    View.of(context).platformDispatcher.platformBrightness ==
+        Brightness.light,
+    ThemeMode.light => true,
+    ThemeMode.dark => false
+  };
 
   void handleBrightnessChange(bool useLightMode) {
     setState(() {
       themeMode = useLightMode ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
+
+  void handleThemeChange(bool useDynamic) {
+    setState(() {
+      useDynamicTheme = useDynamic;
     });
   }
 
@@ -44,23 +51,43 @@ class _AppState extends State<App> {
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-    return DynamicColorBuilder(
-        builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+    if (useDynamicTheme) {
+      return DynamicColorBuilder(
+          builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'plntrAI',
+              themeMode: themeMode,
+              theme: ThemeData(
+                colorScheme: lightColorScheme ?? materialTheme.light().colorScheme,
+              ),
+              darkTheme: ThemeData(
+                colorScheme: darkColorScheme ?? materialTheme.dark().colorScheme,
+              ),
+              home: HomeScreen(
+                useLightMode: useLightMode,
+                handleBrightnessChange: handleBrightnessChange,
+                handleThemeChange: handleThemeChange,
+              ),
+            );
+          });
+    } else {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'plntrAI',
         themeMode: themeMode,
         theme: ThemeData(
-          colorScheme: lightColorScheme ?? materialTheme.light().colorScheme,
+          colorScheme: materialTheme.light().colorScheme,
         ),
         darkTheme: ThemeData(
-          colorScheme: darkColorScheme ?? materialTheme.dark().colorScheme,
+          colorScheme: materialTheme.dark().colorScheme,
         ),
         home: HomeScreen(
           useLightMode: useLightMode,
           handleBrightnessChange: handleBrightnessChange,
+          handleThemeChange: handleThemeChange,
         ),
       );
-    });
+    }
   }
 }

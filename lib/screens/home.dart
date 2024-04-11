@@ -8,11 +8,12 @@ class HomeScreen extends StatefulWidget {
     super.key,
     required this.useLightMode,
     required this.handleBrightnessChange,
+    required this.handleThemeChange,
   });
 
   final bool useLightMode;
-
   final void Function(bool useLightMode) handleBrightnessChange;
+  final void Function(bool useDynamic) handleThemeChange;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,8 +21,9 @@ class HomeScreen extends StatefulWidget {
 
 class SettingsDialog extends StatefulWidget {
   final void Function(bool useLightMode) handleBrightnessChange;
+  final void Function(bool useDynamic) handleThemeChange;
 
-  const SettingsDialog({super.key, required this.handleBrightnessChange});
+  const SettingsDialog({super.key, required this.handleBrightnessChange, required this.handleThemeChange});
 
   @override
   State<SettingsDialog> createState() => _SettingsDialogState();
@@ -43,21 +45,22 @@ class _SettingsDialogState extends State<SettingsDialog> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Theme',
+              'App Theme',
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
-          ..._colors.map((String color) {
+          ..._colors.map((String theme) { // Add this block
             return Align(
               alignment: Alignment.centerLeft,
               child: RadioListTile<String>(
-                title: Text(color),
-                value: color,
+                title: Text(theme),
+                value: theme,
                 groupValue: _color,
                 onChanged: (String? value) {
                   setState(() {
                     _color = value!;
                   });
+                  widget.handleThemeChange(_color == 'System');
                 },
               ),
             );
@@ -140,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context: context,
                 builder: (BuildContext context) => SettingsDialog(
                   handleBrightnessChange: widget.handleBrightnessChange,
+                  handleThemeChange: widget.handleThemeChange,
                 ),
               );
             },
