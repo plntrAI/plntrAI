@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'screens/home.dart';
 import 'theme.dart';
@@ -33,6 +34,13 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     const MaterialTheme materialTheme = MaterialTheme(TextTheme());
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      statusBarColor: Colors.transparent,
+    ));
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
