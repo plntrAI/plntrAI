@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home.dart';
-
 import 'theme.dart';
 
 void main() {
@@ -33,16 +32,14 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    const MaterialTheme materialTheme = MaterialTheme(TextTheme());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'plntrAI',
       themeMode: themeMode,
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      theme: materialTheme.light(),
+      darkTheme: materialTheme.dark(),
       home: HomeScreen(
         useLightMode: useLightMode,
         handleBrightnessChange: handleBrightnessChange,
