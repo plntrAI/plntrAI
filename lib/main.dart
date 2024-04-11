@@ -1,6 +1,6 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:dynamic_color/dynamic_color.dart';
 
 import 'screens/home.dart';
 import 'theme.dart';
@@ -8,6 +8,7 @@ import 'theme.dart';
 void main() {
   runApp(const App());
 }
+
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -19,12 +20,12 @@ class _AppState extends State<App> {
   ThemeMode themeMode = ThemeMode.system;
 
   bool get useLightMode => switch (themeMode) {
-    ThemeMode.system =>
-    View.of(context).platformDispatcher.platformBrightness ==
-        Brightness.light,
-    ThemeMode.light => true,
-    ThemeMode.dark => false
-  };
+        ThemeMode.system =>
+          View.of(context).platformDispatcher.platformBrightness ==
+              Brightness.light,
+        ThemeMode.light => true,
+        ThemeMode.dark => false
+      };
 
   void handleBrightnessChange(bool useLightMode) {
     setState(() {
@@ -43,16 +44,23 @@ class _AppState extends State<App> {
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'plntrAI',
-      themeMode: themeMode,
-      theme: materialTheme.light(),
-      darkTheme: materialTheme.dark(),
-      home: HomeScreen(
-        useLightMode: useLightMode,
-        handleBrightnessChange: handleBrightnessChange,
-      ),
-    );
+    return DynamicColorBuilder(
+        builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'plntrAI',
+        themeMode: themeMode,
+        theme: ThemeData(
+          colorScheme: lightColorScheme ?? materialTheme.light().colorScheme,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: darkColorScheme ?? materialTheme.dark().colorScheme,
+        ),
+        home: HomeScreen(
+          useLightMode: useLightMode,
+          handleBrightnessChange: handleBrightnessChange,
+        ),
+      );
+    });
   }
 }
