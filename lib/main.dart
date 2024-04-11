@@ -21,12 +21,12 @@ class _AppState extends State<App> {
   bool useDynamicTheme = true;
 
   bool get useLightMode => switch (themeMode) {
-    ThemeMode.system =>
-    View.of(context).platformDispatcher.platformBrightness ==
-        Brightness.light,
-    ThemeMode.light => true,
-    ThemeMode.dark => false
-  };
+        ThemeMode.system =>
+          View.of(context).platformDispatcher.platformBrightness ==
+              Brightness.light,
+        ThemeMode.light => true,
+        ThemeMode.dark => false
+      };
 
   void handleBrightnessChange(bool useLightMode) {
     setState(() {
@@ -52,25 +52,25 @@ class _AppState extends State<App> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     if (useDynamicTheme) {
-      return DynamicColorBuilder(
-          builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'plntrAI',
-              themeMode: themeMode,
-              theme: ThemeData(
-                colorScheme: lightColorScheme ?? materialTheme.light().colorScheme,
-              ),
-              darkTheme: ThemeData(
-                colorScheme: darkColorScheme ?? materialTheme.dark().colorScheme,
-              ),
-              home: HomeScreen(
-                useLightMode: useLightMode,
-                handleBrightnessChange: handleBrightnessChange,
-                handleThemeChange: handleThemeChange,
-              ),
-            );
-          });
+      return DynamicColorBuilder(builder:
+          (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'plntrAI',
+          themeMode: themeMode,
+          theme: ThemeData(
+            colorScheme: lightColorScheme ?? materialTheme.light().colorScheme,
+          ),
+          darkTheme: ThemeData(
+            colorScheme: darkColorScheme ?? materialTheme.dark().colorScheme,
+          ),
+          home: HomeScreen(
+            useLightMode: useLightMode,
+            handleBrightnessChange: handleBrightnessChange,
+            handleThemeChange: handleThemeChange,
+          ),
+        );
+      });
     } else {
       return MaterialApp(
         debugShowCheckedModeBanner: false,

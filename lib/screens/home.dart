@@ -23,7 +23,10 @@ class SettingsDialog extends StatefulWidget {
   final void Function(bool useLightMode) handleBrightnessChange;
   final void Function(bool useDynamic) handleThemeChange;
 
-  const SettingsDialog({super.key, required this.handleBrightnessChange, required this.handleThemeChange});
+  const SettingsDialog(
+      {super.key,
+      required this.handleBrightnessChange,
+      required this.handleThemeChange});
 
   @override
   State<SettingsDialog> createState() => _SettingsDialogState();
@@ -49,7 +52,8 @@ class _SettingsDialogState extends State<SettingsDialog> {
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
-          ..._colors.map((String theme) { // Add this block
+          ..._colors.map((String theme) {
+            // Add this block
             return Align(
               alignment: Alignment.centerLeft,
               child: RadioListTile<String>(
