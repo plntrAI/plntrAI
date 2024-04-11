@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/chat.dart';
 import '../screens/dashboard.dart';
+import '../screens/playground.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -124,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _pageOptions = [
     const ChatScreen(title: 'Chat'),
     const DashboardScreen(title: 'Dashboard'),
+    const PlaygroundScreen(title: 'Playground'),
   ];
 
   @override
@@ -173,6 +175,16 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 setState(() {
                   _selectedIndex = 1;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.science_outlined),
+              title: const Text('Playground'),
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 2;
                 });
                 Navigator.pop(context);
               },
