@@ -39,6 +39,7 @@ dependencies:
   google_generative_ai: ^0.2.2
   url_launcher: ^6.2.5
   http: ^1.2.1
+  dynamic_color: ^1.7.0
 
 dev_dependencies:
   flutter_test:
