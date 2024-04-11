@@ -11,8 +11,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class SettingsDialog extends StatefulWidget {
+  const SettingsDialog({super.key});
+
   @override
-  _SettingsDialogState createState() => _SettingsDialogState();
+  State<SettingsDialog> createState() => _SettingsDialogState();
 }
 
 class _SettingsDialogState extends State<SettingsDialog> {
@@ -22,7 +24,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Settings'),
+      title: const Text('Settings'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -58,7 +60,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
       ),
       actions: [
         TextButton(
-          child: Text('OK'),
+          child: const Text('OK'),
           onPressed: () {
             Navigator.of(context).pop();
             // Here you can handle the selected options
@@ -96,10 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (BuildContext context) => SettingsDialog(),
+                builder: (BuildContext context) => const SettingsDialog(),
               );
             },
-          )        ],
+          )
+        ],
       ),
       drawer: Drawer(
         child: ListView(
