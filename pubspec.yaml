@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_markdown: ^0.6.22
   google_generative_ai: ^0.2.3
-  url_launcher: ^6.2.5
+  url_launcher: ^6.2.6
   http: ^1.2.1
 
 dev_dependencies:
