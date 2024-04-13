@@ -45,7 +45,7 @@ class _ChatWidgetState extends State<ChatWidget> {
       
         You are their personal gardener which you can answer their questions about planting or other similar topics. You cannot do things for the user and only recommend actions the user can do. If the user wants to water their plant, direct the user to go to the "Dashboard" page and turn on the pump by pressing toggle button under "Water pump." Do not go off topic, for example if the user asks for the history of Iraq or similar politely decline their request.
       
-        It is 70 degrees and the soil moisture is at 80% (75% recommended). The user has the plant "Russet Potatoes" and it has been growing for 3 weeks. The use is located in California, use this to adjust your responses to region and season. The date and time is ${DateTime.now()}
+        It is 70 degrees and the soil moisture is at 80% (75% recommended). The user is growing the plant "Russet Potatoes" and it has been growing for 3 weeks. The use is located in California, use this to adjust your responses to region and season. The date and time is ${DateTime.now()}
       '''),
       Content.model([
         TextPart(
@@ -70,7 +70,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   Widget build(BuildContext context) {
     final history = _chat.history.toList();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,14 +92,11 @@ class _ChatWidgetState extends State<ChatWidget> {
               itemCount: history.length - 1,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 25,
-              horizontal: 15,
-            ),
-            child: Row(
-              children: [
-                Expanded(
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16),
                   child: TextField(
                     autofocus: true,
                     focusNode: _textFieldFocus,
@@ -111,21 +108,31 @@ class _ChatWidgetState extends State<ChatWidget> {
                     },
                   ),
                 ),
-                const SizedBox.square(dimension: 15),
-                if (!_loading)
-                  IconButton(
-                    onPressed: () async {
-                      _sendChatMessage(_textController.text);
-                    },
-                    icon: Icon(
-                      Icons.send,
-                      color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox.square(dimension: 16),
+              if (!_loading)
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: IconButton(
+                      onPressed: () async {
+                        _sendChatMessage(_textController.text);
+                      },
+                      icon: Icon(
+                        Icons.send,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 32, // Make sure this matches your square size
+                      ),
                     ),
-                  )
-                else
-                  const CircularProgressIndicator(),
-              ],
-            ),
+                  ),
+                )
+              else
+                const Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: CircularProgressIndicator(),
+                )
+            ],
           ),
         ],
       ),
@@ -193,17 +200,14 @@ InputDecoration textFieldDecoration(BuildContext context, String hintText) =>
     InputDecoration(
       contentPadding: const EdgeInsets.all(20),
       hintText: hintText,
-      border: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(28),
-        ),
-        borderSide: BorderSide(
-          color: Theme.of(context).colorScheme.secondary,
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(40),
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.all(
-          Radius.circular(28),
+          Radius.circular(40),
         ),
         borderSide: BorderSide(
           color: Theme.of(context).colorScheme.secondary,
