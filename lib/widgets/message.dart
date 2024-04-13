@@ -26,17 +26,17 @@ class MessageWidget extends StatelessWidget {
                   : Theme.of(context).colorScheme.surfaceVariant,
               borderRadius: isFromUser
                   ? const BorderRadius.only(
-                topLeft: Radius.circular(18),
-                topRight: Radius.circular(18),
-                bottomLeft: Radius.circular(18),
-                bottomRight: Radius.circular(3),
-              )
+                      topLeft: Radius.circular(18),
+                      topRight: Radius.circular(18),
+                      bottomLeft: Radius.circular(18),
+                      bottomRight: Radius.circular(3),
+                    )
                   : const BorderRadius.only(
-                topLeft: Radius.circular(18),
-                topRight: Radius.circular(18),
-                bottomLeft: Radius.circular(3),
-                bottomRight: Radius.circular(18),
-              ),
+                      topLeft: Radius.circular(18),
+                      topRight: Radius.circular(18),
+                      bottomLeft: Radius.circular(3),
+                      bottomRight: Radius.circular(18),
+                    ),
             ),
             padding: const EdgeInsets.symmetric(
               vertical: 10,
